@@ -1,0 +1,3 @@
+[tool.coverage.run]
+parallel = true
+source = ["cov"]

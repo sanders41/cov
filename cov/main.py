@@ -11,7 +11,7 @@ if sys.version_info < (3, 12):
         return "hi"
 
 
-if sys.version_info > (3, 11):
+if sys.version_info >= (3, 12):
 
     def bye() -> str:
         return "bye"

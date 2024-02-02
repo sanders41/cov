@@ -13,7 +13,7 @@ if sys.version_info < (3, 12):
         assert main.hi() == "hi"
 
 
-if sys.version_info > (3, 11):
+if sys.version_info >= (3, 12):
 
     def test_bye():
         assert main.bye() == "bye"

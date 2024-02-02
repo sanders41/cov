@@ -1,5 +1,13 @@
-from cov.main import main
+import sys
+
+from cov import main
 
 
 def test_main():
-    assert main() == 1
+    assert main.main() == 1
+
+
+if sys.version_info < (3, 12):
+
+    def test_hi():
+        assert main.hi() == "hi"

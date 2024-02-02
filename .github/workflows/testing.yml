@@ -24,12 +24,12 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
       - name: Run tests
-        run: pytest --cov=cov
+        run: coverage run -m pytest
       - name: Upload coverage data
         uses: actions/upload-artifact@v4
         with:
           name: coverage-data-${{ matrix.os }}-${{ matrix.python-version }}
-          path: .coverage
+          path: .coverage.*
   coverage:
     name: Combine & check coverage
     if: always()

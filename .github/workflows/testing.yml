@@ -24,13 +24,7 @@ jobs:
           pip install -U pip
           pip install -r requirements.txt
       - name: Run tests
-        run:
-          pytest --cov=cov
-          # - name: Upload coverage
-          #   uses: codecov/codecov-action@v3
-          #   with:
-          #     token: ${{ secrets.CODECOV_TOKEN }}
-          #     fail_ci_if_error: true
+        run: pytest --cov=cov
       - name: Upload coverage data
         uses: actions/upload-artifact@v4
         with:
@@ -41,7 +35,6 @@ jobs:
     if: always()
     needs: test
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -49,14 +42,13 @@ jobs:
           # Use latest Python, so it understands all syntax.
           python-version: "3.12"
           cache: "pip"
-
       - uses: actions/download-artifact@v4
         with:
           pattern: coverage-data-*
           merge-multiple: true
-
       - name: Combine coverage & fail if it's <100%
         run: |
+          ls -a
           python -Im pip install --upgrade coverage[toml]
           python -Im coverage combine
           python -Im coverage html --skip-covered

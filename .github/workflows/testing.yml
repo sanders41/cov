@@ -47,6 +47,7 @@ jobs:
           merge-multiple: true
       - name: Combine coverage & fail if it's <100%
         run: |
+          pip install -r requirements.txt
           python -Im pip install .
           python -Im pip install --upgrade coverage[toml]
           python -Im coverage combine
@@ -54,7 +55,7 @@ jobs:
           # Report and write to summary.
           python -Im coverage report --format=markdown >> $GITHUB_STEP_SUMMARY
           # Report again and fail if under 100%.
-          python -Im coverage report --source=cov --fail-under=100
+          python -Im coverage report --fail-under=100
       - name: Upload HTML report if check failed
         uses: actions/upload-artifact@v4
         with:
